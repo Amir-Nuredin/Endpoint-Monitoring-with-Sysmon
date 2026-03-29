@@ -12,7 +12,6 @@ This project has provided hands-on experience with the following security soluti
 -  Sysmon installation, configuration, and log monitoring
 -  Process creation analysis (Sysmon Event ID 1 / Windows Event ID 4688)
 -  Network connection monitoring and investigation (Sysmon Event ID 3)
--  Network connection monitoring and investigation (Sysmon Event ID 3)
 -  Log filtering and event correlation using Event IDs and timestamps
 -  Detection of reconnaissance activity (e.g., Nmap port scanning) through log patterns
 
@@ -41,8 +40,8 @@ Before Starting This Sysmon lab/Project, I had to ensure that my lab environment
 
   1. **ENSURING WINDOWS VM WAS FUNCTIONAL.** This step was simple; my Windows VM has been working, so nothing extra to check here (IM2).
   2. **CONFIRMING THAT KALI VM CAN COMMUNICATE WITH WINDOWS VM.** To check this, I simply pinged the Windows IP address from Kali Linux, and it was successful (IM3). This is because later I will be doing some Nmap Scans against Windows to generate logs. 
-  3. **DOWNLOADING SYSMON.** To download Sysmon onto my Windows VM, I first had to go to the official Microsoft Sysinternals Sysmon page to download the Sysmon zip file (IM4). Once I did that, I extracted the file to the C:\Sysmon to retrieve the contents
-  4. **DOWNLOADING SYSMON CONFIGURATION FILE.** After downloading Sysmon, I needed to download its configuration file. Without it, Sysmon is as good as useless. To do this, I went to my browser and searched "SwiftOnSecurity Sysmon config GitHub" to find the configuration file (IM5). I downloaded the file, then saved it to C:\Sysmon.
+  3. **DOWNLOADING SYSMON.** To download Sysmon onto my Windows VM, I first had to go to the official Microsoft Sysinternals Sysmon page to download the Sysmon zip file (IM4). Once I did that, I extracted the file to the C:\Sysmon folder to retrieve the contents
+  4. **DOWNLOADING SYSMON CONFIGURATION FILE.** After downloading Sysmon, I needed to download its configuration file. Without it, Sysmon is as good as useless. To do this, I went to my browser and searched "SwiftOnSecurity Sysmon config GitHub" to find the configuration file (IM5). I downloaded the file, then saved it to the C:\Sysmon folder.
   5. **INSTALLING SYSMON ON WINDOWS VM.** Now I needed to install Sysmon. to do this, I went into the command prompt (as an administrator), navigated to the sysmon folder, and used the command "Sysmon64.exe -accepteula -i sysmonconfig-export.xml." This command essentially accepts the license and installs Sysmon. The download was successful (IM6).
   6. **VERIFY SYSMON LOGS ARE VISIBLE.** After successfully downloading Sysmon, I needed to ensure that the logs were actually visible. To do this, I opened up Event Viewer (where most of this work was done) and followed this path: Applications and Services > Microsoft > Windows > Sysmon > Operational. Sure enough, the logs were there, verifying that Sysmon was correctly installed (IM7&8).
   7. **TAKE SNAPSHOT OF WINDOWS VM BEFORE STARTING LAB.** The last thing I had to do before starting was taking a snapshot of my Windows VM just in case anything crashed during the execution of this project (IM9).
@@ -146,7 +145,7 @@ IM22: Failed login logs and Details
 
   The last part of this lab was to run a simulated attack scenario by running and Nmap scan from my Kali linux VM against my Windows VM and detect in the Sysmon logs. 
 
-  1.  **RUN NMAP SCAN.** To PERFORM THIS, I first ran the Nmap scan "nmap -sS -Pn 10.10.10.102 to perform a stealth scan without host discovery (IM23).
+  1.  **RUN NMAP SCAN.** To PERFORM THIS, I first ran the Nmap scan "nmap -sS -Pn 10.10.10.102 to perform a stealth scan without host discovery on my Windows VM (IM23).
   2.  **IDENTIFY LOGS FOR SCAN.** After the can was complete, I went to the Sysmon logs to see if it got reported. The information I was looking for in the log included the source IP (Kali Linux VM) and mutiple connection attempts since I scanned multiple times
   3.  **CORRELATE TIMESTAMPS.** To ensure that the time I performed the scan in Nmap and the time it was logged were correlated, I looked at the time the scan was done (first line of scan results) and what time it had said in the log, and fortunately they lined up.
 
