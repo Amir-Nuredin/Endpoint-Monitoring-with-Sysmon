@@ -18,7 +18,7 @@ This project has provided hands-on experience with the following security soluti
 ### Tools Used
 
 - VirtualBox 
-- VirtualBox VMs (Windows 10 server, Kali Linux) 
+- VirtualBox VMs (Windows 10 server, Kali Linux)  
 - Sysmon 
 - Event Viewer 
 - Command-Line tools (notepad, calc, whoami, ipconfig, and ping) 
